@@ -98,24 +98,49 @@
 # profile.age = 200
 # print(profile.age) 
 
-# 7. Password Protection
-class UserAccount:
-    def __init__(self,username, password):
-        self.username = username
-        self.__password = password
-    def check_password(self,attempt):
-        return True if attempt == self.__password else False 
-    def change_password(self,old, new):
-        if self.__password == old:
-            self.__password = new
-        else:
-            print("Incorrect old password")
-admin = UserAccount("admin", "secret")
-print(admin.check_password("wrong"))
-admin.change_password("secret", "new123")
-print(admin.check_password("new123"))
+# # 7. Password Protection
+# class UserAccount:
+#     def __init__(self,username, password):
+#         self.username = username
+#         self.__password = password
+#     def check_password(self,attempt):
+#         return True if attempt == self.__password else False 
+#     def change_password(self,old, new):
+#         if self.__password == old:
+#             self.__password = new
+#         else:
+#             print("Incorrect old password")
+# admin = UserAccount("admin", "secret")
+# print(admin.check_password("wrong"))
+# admin.change_password("secret", "new123")
+# print(admin.check_password("new123"))
 
-
+# 8. Post Like Counter
+class Post:
+    def __init__(self,author, content):
+        self.author = author
+        self.content = content
+        self.__likes = 0
+        self.__liked_by = []
+    @property
+    def likes(self):
+        return self.__likes
+    def like(self,username):
+        if username not in self.__liked_by:
+            self.__likes +=1
+            self.__liked_by.append(username)
+    def unlike(self,username):
+        if username in self.__liked_by:
+            self.__likes -=1
+    def status(self):
+        return f"Post by {self.author}: {self.likes} likes"
+alice = Post("alice", "Hello world!") 
+alice.like("gad")
+alice.like("yossi")
+alice.like("dan")
+alice.unlike("yossi")
+alice.like("gad")
+print(alice.status())
 
 
 
