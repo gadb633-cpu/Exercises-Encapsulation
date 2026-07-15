@@ -60,22 +60,42 @@
 # profile.unfollow()
 # print(profile.followers)
 
-# 5. Protected Bio Field
-class UserProfile:
-    def __init__(self,username,bio):
-        self.username=username
-        self._bio =bio
-    @property
-    def bio(self):
-        return self._bio
-class VerifiedUser(UserProfile):
-    def __init__(self,username,bio,badge):
-        super().__init__(username,bio)
-        self.badge=badge
-    def full_description(self):
-        return f"{self.username} [{self.badge}]: {self._bio}"
-celeb = VerifiedUser("celeb", "Singer and songwriter", "✓")
-print(celeb.full_description())
+# # 5. Protected Bio Field
+# class UserProfile:
+#     def __init__(self,username,bio):
+#         self.username=username
+#         self._bio =bio
+#     @property
+#     def bio(self):
+#         return self._bio
+# class VerifiedUser(UserProfile):
+#     def __init__(self,username,bio,badge):
+#         super().__init__(username,bio)
+#         self.badge=badge
+#     def full_description(self):
+#         return f"{self.username} [{self.badge}]: {self._bio}"
+# celeb = VerifiedUser("celeb", "Singer and songwriter", "✓")
+# print(celeb.full_description())
 
+# 6. Age Setter with Range Check
+class UserProfile:
+    def __init__(self,username,age):
+        self.username = username
+        self.__age = age
+    @property
+    def age(self):
+        return self.__age
+    @age.setter
+    def age(self,new_age):
+        if 13 <= new_age <= 120:
+            self.__age = new_age
+            return self.__age
+        else:
+            print("Invalid age")
+profile = UserProfile("dan",18)
+profile.age = 10
+profile.age = 25
+profile.age = 200
+print(profile.age)         
 
 
