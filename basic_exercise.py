@@ -77,25 +77,48 @@
 # celeb = VerifiedUser("celeb", "Singer and songwriter", "✓")
 # print(celeb.full_description())
 
-# 6. Age Setter with Range Check
-class UserProfile:
-    def __init__(self,username,age):
+# # 6. Age Setter with Range Check
+# class UserProfile:
+#     def __init__(self,username,age):
+#         self.username = username
+#         self.__age = age
+#     @property
+#     def age(self):
+#         return self.__age
+#     @age.setter
+#     def age(self,new_age):
+#         if 13 <= new_age <= 120:
+#             self.__age = new_age
+#             return self.__age
+#         else:
+#             print("Invalid age")
+# profile = UserProfile("dan",18)
+# profile.age = 10
+# profile.age = 25
+# profile.age = 200
+# print(profile.age) 
+
+# 7. Password Protection
+class UserAccount:
+    def __init__(self,username, password):
         self.username = username
-        self.__age = age
-    @property
-    def age(self):
-        return self.__age
-    @age.setter
-    def age(self,new_age):
-        if 13 <= new_age <= 120:
-            self.__age = new_age
-            return self.__age
+        self.__password = password
+    def check_password(self,attempt):
+        return True if attempt == self.__password else False 
+    def change_password(self,old, new):
+        if self.__password == old:
+            self.__password = new
         else:
-            print("Invalid age")
-profile = UserProfile("dan",18)
-profile.age = 10
-profile.age = 25
-profile.age = 200
-print(profile.age)         
+            print("Incorrect old password")
+admin = UserAccount("admin", "secret")
+print(admin.check_password("wrong"))
+admin.change_password("secret", "new123")
+print(admin.check_password("new123"))
+
+
+
+
+
+
 
 
