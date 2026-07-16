@@ -142,7 +142,51 @@ alice.unlike("yossi")
 alice.like("gad")
 print(alice.status())
 
-
+# 9. Profile Privacy Settings
+class UserProfile:
+    def __init__(self,username):
+        self.username = username
+        self.__is_public = True
+        self.__show_email = False
+        self.__show_age = False
+    @property
+    def is_public(self):
+        return self.__is_public
+    @property
+    def show_email(self):
+        return self.__show_email
+    @property
+    def show_age(self):
+        return self.__show_age
+    @is_public.setter
+    def is_public(self,new_is_public):
+        if new_is_public == True or new_is_public == False:
+            self.__is_public = new_is_public
+            return self.__is_public    
+        else:
+            print("is_public must be True or False.")
+    @show_email.setter
+    def show_email(self,new_show_email):
+        if new_show_email == True or new_show_email== False:
+            self.__show_email = new_show_email
+            return self.__show_email    
+        else:
+            print("show_email must be True or False.")
+    @show_age.setter
+    def show_age(self,new_show_age):
+        if new_show_age == True or new_show_age== False:
+            self.__show_age = new_show_age
+            return self.__show_age
+        else:
+            print("show_age must be True or False.")
+    def privacy_summary(self):
+        print(self.is_public)
+        print(self.show_email)
+        print(self.show_age)
+profile = UserProfile("gad")
+profile.is_public = "yet"
+profile.show_email = True
+profile.privacy_summary()
 
 
 
