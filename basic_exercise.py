@@ -188,6 +188,68 @@ profile.is_public = "yet"
 profile.show_email = True
 profile.privacy_summary()
 
+# 10. Full User Account System
+class UserAccount:
+    def __init__(self,username, email, password, age):
+        self.__username =username
+        self.__email =email
+        self.__password = password
+        self.__age =age
+        self._login_count = 0
+    @property
+    def username(self):
+        return self.__username
+    @property
+    def email(self):
+        return self.__email
+    @property
+    def age(self):
+        return self.__age
+    @username.setter
+    def username(self,new_username):
+        if len(new_username) < 3:
+            return "username is too short"
+        else:
+            self.__username = new_username
+            return self.__username
+    @email.setter
+    def email(self,new_email):
+        if "@" in new_email:
+            self.__email = new_email
+            return self.__email
+        else:
+            return "email must contain @"        
+    @age.setter
+    def age(self,new_age):
+        if 13<=new_age<=120:
+            self.__age = new_age
+            return self.__age
+        else:
+            return "age most be batween 13-120"
+    def check_password(self,attempt):
+        return True if attempt == self.__password else False
+    def change_password(self,old, new):
+        if self.__password == old:
+            self.__password = new
+    def login(self,password):
+        if password == self.__password:
+            self._login_count +=1
+            return "welcome!"
+        else:
+            return "Login failed"
+    def account_summary(self):
+        return f"username is: {self.__username} | email is: {self.__email} | age is: {self.__age} | logins: {self._login_count} "
+user1 = UserAccount("user1", "u@mail.com", "pass123", 20)
+print(user1.login("587"))
+print(user1.login("gad47"))
+print(user1.login("pass123"))
+user1.email = "t@jfjiro.com"
+user1.age = 55
+print(user1.account_summary())              
+
+
+
+
 
 
 
